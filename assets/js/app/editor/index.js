@@ -20,6 +20,8 @@ import Email from './Components/Editor/Email/Email';
 import Password from './Components/Editor/Password/Password';
 import ThemeSelect from './Components/Editor/ThemeSelect/ThemeSelect';
 import Language from './Components/Editor/Language/Language';
+import FieldSet from './Components/Editor/FieldSet/FieldSet';
+
 
 new Vue({
   store,
@@ -40,5 +42,6 @@ new Vue({
     "editor-textarea": Textarea,
     "general-language": Language,
     "theme-select": ThemeSelect,
+    "editor-fieldset": FieldSet,
   }
 });

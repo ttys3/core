@@ -2,4 +2,12 @@
 
 {% block field %}
     <mark>Note: The Repeater / Block field is basically a wrapper for other fields.</mark>
+
+{{dump(field.definition.sets)}}
+
+    <editor-fieldset
+        :sets="{{field.definition.sets|json_encode}}"
+    ></editor-fieldset>
+
 {% endblock %}
+

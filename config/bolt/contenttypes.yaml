@@ -71,27 +71,67 @@ pages:
             class: large
         slug:
             type: slug
-            uses: header
-        photo:
-            type: image
-            label: "Eén plaatje"
-            placeholder: https://source.unsplash.com/1280x768/?business,workplace/__random__
-        teaser:
-            type: textarea
-            postfix: "This is a plain text area. the contents will <em><strong>not</em></strong> be processed."
-            height: 150px
-        marky:
-            type: markdown
-        content:
-            type: html
-            height: 300px
-            allowtwig: true
-        checkbox:
-            type: checkbox
-            label: "This is a checkbox"
-        template:
-            type: templateselect
-            filter: '*.twig'
+            uses: heading
+        # photo:
+        #     type: image
+        #     label: "Eén plaatje"
+        #     placeholder: https://source.unsplash.com/1280x768/?business,workplace/__random__
+        # teaser:
+        #     type: textarea
+        #     postfix: "This is a plain text area. the contents will <em><strong>not</em></strong> be processed."
+        #     height: 150px
+        # marky:
+        #     type: markdown
+        # content:
+        #     type: html
+        #     height: 300px
+        #     allowtwig: true
+        # checkbox:
+        #     type: checkbox
+        #     label: "This is a checkbox"
+        features:
+            type: fieldset
+            sets:
+                one:
+                    label: Image with description
+                    fields:
+                        heading:
+                            type: text
+                        image:
+                            type: image
+                        description:
+                            type: html
+                            height: 70px
+                # two:
+                #     fields:
+                #         repeattitle:
+                #             type: text
+                #         repeatimage:
+                #             type: image
+                #             extensions: [ gif, jpg, png ]
+                #         repeatcontent:
+                #             type: html
+                # imagesection:
+                #     label: Image with description
+                #     fields:
+                #         heading:
+                #             type: text
+                #         image:
+                #             type: image
+                #         description:
+                #             type: html
+                #             height: 70px
+                # textsection:
+                #     label: Paragraph
+                #     fields:
+                #         heading:
+                #             type: text
+                #         content:
+                #             type: html
+                #             height: 100px
+        # template:
+        #     type: templateselect
+        #     filter: '*.twig'
     taxonomy: [ groups ]
     recordsperpage: 5
 
