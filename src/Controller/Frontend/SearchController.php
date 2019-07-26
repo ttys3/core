@@ -7,8 +7,7 @@ namespace Bolt\Controller\Frontend;
 use Bolt\Controller\TwigAwareController;
 use Bolt\Repository\ContentRepository;
 use Bolt\TemplateChooser;
-use Pagerfanta\Adapter\ArrayAdapter;
-use Pagerfanta\Pagerfanta;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,7 +41,7 @@ class SearchController extends TwigAwareController implements FrontendZone
         if (! empty($searchTerm)) {
             $records = $contentRepository->searchNaive($searchTerm, $page, $amountPerPage);
         } else {
-            $records = new Pagerfanta(new ArrayAdapter([]));
+            $records = new Paginator([]);
         }
 
         $context = [

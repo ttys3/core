@@ -10,8 +10,7 @@ use Bolt\Enum\Statuses;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -32,7 +31,7 @@ class ContentRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('content');
     }
 
-    public function findForListing(int $page, int $amountPerPage, ?ContentType $contentType = null, bool $onlyPublished = true): Pagerfanta
+    public function findForListing(int $page, int $amountPerPage, ?ContentType $contentType = null, bool $onlyPublished = true): Paginator
     {
         $qb = $this->getQueryBuilder()
             ->addSelect('a')
@@ -51,7 +50,7 @@ class ContentRepository extends ServiceEntityRepository
         return $this->createPaginator($qb->getQuery(), $page, $amountPerPage);
     }
 
-    public function findForTaxonomy(int $page, string $taxonomyslug, string $slug, int $amountPerPage, bool $onlyPublished = true): Pagerfanta
+    public function findForTaxonomy(int $page, string $taxonomyslug, string $slug, int $amountPerPage, bool $onlyPublished = true): Paginator
     {
         $qb = $this->getQueryBuilder()
             ->addSelect('a')
@@ -91,7 +90,7 @@ class ContentRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function searchNaive(string $searchTerm, int $page, int $amountPerPage, bool $onlyPublished = true): Pagerfanta
+    public function searchNaive(string $searchTerm, int $page, int $amountPerPage, bool $onlyPublished = true): Paginator
     {
         // First, create a querybuilder to get the fields that match the Query
         $qb = $this->getQueryBuilder()
@@ -143,11 +142,11 @@ class ContentRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    private function createPaginator(Query $query, int $page, int $amountPerPage): Pagerfanta
+    private function createPaginator(Query $query, int $page, int $amountPerPage): Paginator
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setMaxPerPage($amountPerPage);
-        $paginator->setCurrentPage($page);
+        $paginator = new Paginator($query);
+//        $paginator->setMaxPerPage($amountPerPage);
+//        $paginator->setCurrentPage($page);
 
         return $paginator;
     }
