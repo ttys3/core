@@ -229,12 +229,12 @@ class FeatureContext extends MinkContext implements Context
     }
 
     /**
-     * @Given /^I am logged in as "([^"]*)"$/
+     * @Given /^I am logged in as "([^"]*)"(?:| with password "([^"]*)")$/
      */
-    public function iAmAuthenticatedAs($username) {
+    public function iAmAuthenticatedAs($username='admin', $password="admin%1") {
         $this->visit('/bolt/login');
         $this->fillField('username', $username);
-        $this->fillField('password', "admin%1");
+        $this->fillField('password', $password);
         $this->pressButton('Log in');
     }
 
