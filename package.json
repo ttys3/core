@@ -35,7 +35,7 @@
     "codemirror": "^5.52.0",
     "dropzone": "^5.7",
     "flagpack": "^1.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "locutus": "^2.0.11",
     "luxon": "^1.22.0",
     "no-scroll": "^2.1.1",
